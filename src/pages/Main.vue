@@ -30,7 +30,7 @@ const deleteNote = () => {
 </script>
 
 <template>
-  <div class="container mx-auto py-4">
+  <div class="container mx-auto py-4 px-4">
     <h1 class="text-2xl font-bold mb-4">Заметки</h1>
     <router-link
       to="/note/new"

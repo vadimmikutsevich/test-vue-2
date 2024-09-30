@@ -14,10 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{ modelValue: string }>();
+defineProps<{ modelValue: string }>();
 const emit = defineEmits(["update:modelValue", "beforeChange"]);
 
-// Отправляем событие перед изменением
 const onInputChange = (event: Event) => {
   emit("beforeChange");
   emit("update:modelValue", (event.target as HTMLInputElement).value);

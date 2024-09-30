@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/router/index.ts","./src/store/notestore.ts","./src/app.vue","./src/components/confirmdialog.vue","./src/components/notecard.vue","./src/components/notetitleinput.vue","./src/components/todoiteminput.vue","./src/pages/main.vue","./src/pages/noteeditor.vue"],"version":"5.6.2"}

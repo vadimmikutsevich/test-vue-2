@@ -22,7 +22,6 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["update:modelValue", "delete", "beforeChange"]);
 
-// Отправляем событие перед изменением
 const onInputChange = (event: Event) => {
   emit("beforeChange");
   emit("update:modelValue", {

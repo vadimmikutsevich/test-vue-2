@@ -135,7 +135,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto py-4">
+  <div class="container mx-auto py-4 px-4">
     <h1 class="text-2xl font-bold mb-4">
       {{ isNewNote ? "Создание заметки" : "Редактирование заметки" }}
     </h1>
@@ -147,7 +147,6 @@ onMounted(() => {
 
     <h2 class="text-lg font-semibold mt-4 mb-2">Список задач</h2>
     <div v-for="(todo, index) in localNote.todos" :key="todo.id">
-      <!-- Используем v-model для задач -->
       <TodoItemInput
         v-model="localNote.todos[index]"
         @beforeChange="saveStateToUndoStack"
@@ -162,45 +161,48 @@ onMounted(() => {
       Добавить задачу
     </button>
 
-    <div class="flex space-x-4 mt-6">
-      <button
-        @click="saveNote"
-        class="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Сохранить
-      </button>
-      <button
-        @click="showCancelConfirm"
-        class="bg-gray-500 text-white px-4 py-2 rounded"
-      >
-        Отменить
-      </button>
-      <button
-        v-if="!isNewNote"
-        @click="showDeleteConfirm"
-        class="bg-red-500 text-white px-4 py-2 rounded"
-      >
-        Удалить
-      </button>
+    <div class="flex flex-col space-y-4 mt-6">
+      <div class="flex items-center gap-x-4">
+        <button
+          @click="saveNote"
+          class="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Сохранить
+        </button>
+        <button
+          @click="showCancelConfirm"
+          class="bg-gray-500 text-white px-4 py-2 rounded"
+        >
+          Отменить
+        </button>
+        <button
+          v-if="!isNewNote"
+          @click="showDeleteConfirm"
+          class="bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Удалить
+        </button>
+      </div>
 
       <!-- Undo/Redo Buttons -->
-      <button
-        @click="undo"
-        :disabled="undoStack.length === 0"
-        class="bg-yellow-500 text-white px-4 py-2 rounded"
-      >
-        Отменить внесенное изменение
-      </button>
-      <button
-        @click="redo"
-        :disabled="redoStack.length === 0"
-        class="bg-yellow-500 text-white px-4 py-2 rounded"
-      >
-        Повторить отмененное изменение
-      </button>
+      <div class="flex items-center gap-x-4">
+        <button
+          @click="undo"
+          :disabled="undoStack.length === 0"
+          class="bg-yellow-500 text-white px-4 py-2 rounded"
+        >
+          Отменить внесенное изменение
+        </button>
+        <button
+          @click="redo"
+          :disabled="redoStack.length === 0"
+          class="bg-yellow-500 text-white px-4 py-2 rounded"
+        >
+          Повторить отмененное изменение
+        </button>
+      </div>
     </div>
 
-    <!-- Диалоги подтверждений -->
     <ConfirmDialog
       :visible="showConfirmDialog"
       title="Подтвердите отмену"
